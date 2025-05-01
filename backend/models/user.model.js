@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+const watchEntrySchema = new mongoose.Schema({
+	mediaId:    { type: String, required: true },
+	mediaType:  { type: String, enum: ['movie','tv'], required: true },
+	title:      { type: String, required: true },
+	posterPath: { type: String },
+	genres:     [String],
+	director:   String,
+	createdAt:  { type: Date, default: Date.now }
+  });
+
 const userSchema = mongoose.Schema({
 	username: {
 		type: String,
@@ -15,10 +25,12 @@ const userSchema = mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	searchHistory: {
-		type: Array,
-		default: [],
-	}
+	watchlist:   [watchEntrySchema],
+  	watchHistory:[watchEntrySchema]
+},{
+	timestamps: true
 });
+
+
 
 export const User = mongoose.model("User", userSchema);
