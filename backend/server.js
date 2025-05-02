@@ -32,16 +32,16 @@ app.get('/', (_req, res) => res.send('OK'));
 app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
 
-//app.get("/api/movie/trending", getTrendingMovie);
+app.get("/api/movie/trending", getTrendingMovie);
 
-//app.use("/api/auth", authRoutes);
-//app.use('/api/search', searchRoutes);
-//app.use('/api/media', mediaRoutes);
-//app.use('/api/genre',  protectRoute, genreRoutes);
-//app.use('/api/person', protectRoute, personRoutes);
-//app.use('/api/trending', protectRoute, trendingRoutes);
+app.use("/api/auth", authRoutes);
+app.use('/api/search', searchRoutes);
+app.use('/api/media', mediaRoutes);
+app.use('/api/genre',  protectRoute, genreRoutes);
+app.use('/api/person', protectRoute, personRoutes);
+app.use('/api/trending', protectRoute, trendingRoutes);
 
-//app.use('/api/user', protectRoute, userRoutes);
+app.use('/api/user', protectRoute, userRoutes);
 
 //if (ENV_VARS.NODE_ENV === "production") {
 //	app.use(express.static(path.join(__dirname, "/frontend/dist")));
