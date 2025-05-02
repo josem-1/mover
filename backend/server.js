@@ -11,6 +11,9 @@ import searchRoutes from './routes/search.route.js';
 import mediaRoutes  from './routes/media.route.js';
 import authRoutes   from './routes/auth.route.js';
 import userRoutes   from './routes/user.route.js';
+import genreRoutes  from './routes/genre.route.js';
+import personRoutes from './routes/person.route.js';
+import trendingRoutes from './routes/trending.route.js';
 
 import { ENV_VARS } from "./config/envVars.js";
 import { connectDB } from "./config/db.js";
@@ -33,6 +36,9 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/media', mediaRoutes);
+app.use('/api/genre',  protectRoute, genreRoutes);
+app.use('/api/person', protectRoute, personRoutes);
+app.use('/api/trending', protectRoute, trendingRoutes);
 
 app.use('/api/user', protectRoute, userRoutes);
 

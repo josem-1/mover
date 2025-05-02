@@ -1,5 +1,5 @@
 // controllers/media.controller.js
-import { getMediaDetails, getSimilar } from '../services/tmdb.service.js';
+import { getMediaDetails, getSimilar, getWatchProviders } from '../services/tmdb.service.js';
 
 /**
  * GET /api/media/:type/:id
@@ -23,6 +23,7 @@ export async function getDetails(req, res) {
         id:        data.id,
         type,
         title:     data.title || data.name,
+        overview: data.overview,
         posterPath: data.poster_path,
         genres:    data.genres.map(g => g.name),
         director
@@ -65,6 +66,19 @@ export async function getSimilarContent(req, res) {
     res.json({ success: true, results });
   } catch (err) {
     console.error('[Media Controller] getSimilarContent:', err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+}
+
+
+export async function getProviders(req, res) {
+  const { type, id } = req.params;
+  try {
+    const data = await getWatchProviders(type, id);
+    // data.results is keyed by country code
+    res.json({ success: true, providers: data.results });
+  } catch (err) {
+    console.error('[Media Controller] getProviders:', err);
     res.status(500).json({ success: false, message: err.message });
   }
 }

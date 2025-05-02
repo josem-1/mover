@@ -4,6 +4,7 @@ import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
 export async function signup(req, res) {
 	try {
+		console.log('[SIGNUP] req.body =', req.body);     
 		const { email, password, username } = req.body;
 
 		if (!email || !password || !username) {
@@ -98,7 +99,12 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
 	try {
-		res.clearCookie("jsonwebtoken-mover");
+		res.clearCookie("jwt-mover", {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'strict',
+			path: '/'            // make sure this matches how you set it
+		  });
 		res.status(200).json({ success: true, message: "logged out" });
 	} catch (error) {
 		console.log("Error in logout controller", error.message);

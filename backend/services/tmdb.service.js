@@ -56,3 +56,22 @@ export async function getSimilar(type, id) {
     `https://api.themoviedb.org/3/${type}/${id}/similar?language=en-US`
   );
 }
+
+export async function discoverByGenre(genreId) {
+  return fetchFromTMDB(
+    `https://api.themoviedb.org/3/discover/movie?language=en-US&with_genres=${genreId}`
+  );
+}
+
+export async function getPersonCredits(personId) {
+  return fetchFromTMDB(
+    `https://api.themoviedb.org/3/person/${personId}/combined_credits?language=en-US`
+  );
+}
+
+export async function getWatchProviders(type, id) {
+  // type is "movie" or "tv"
+  return fetchFromTMDB(
+    `https://api.themoviedb.org/3/${type}/${id}/watch/providers`
+  );
+}
