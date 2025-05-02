@@ -32,7 +32,7 @@ app.get('/', (_req, res) => res.send('OK'));
 app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
 
-app.get("/api/movie/trending", getTrendingMovie);
+//app.get("/api/movie/trending", getTrendingMovie);
 
 app.use("/api/auth", authRoutes);
 app.use('/api/search', searchRoutes);
