@@ -1,0 +1,28 @@
+.carousel {
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.carousel__track {
+  display: flex;
+  gap: 5rem;
+}
+
+/* Ensure text inside each item is white */
+.carousel__item a,
+.carousel__item p {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+/* Custom light-blue scrollbar for horizontal carousels */
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+.carousel::-webkit-scrollbar-track {
+  background: #001f3f;
+}
+.carousel::-webkit-scrollbar-thumb {
+  background-color: #ADD8E6;
+  border-radius: 4px;
+}
